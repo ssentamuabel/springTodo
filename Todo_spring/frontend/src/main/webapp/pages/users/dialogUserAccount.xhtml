@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/californiatemplate/dialog-template.xhtml">
+
+	<ui:define name="content">
+		<title>#{dialogUserAccount.model.user.firstName}'s Account</title>
+		<h:form id="dialogUserAccount">
+			<div class="ui-g card">
+				<div class="ui-g-12">
+					<p:outputPanel styleClass="ui-fluid">
+						<div class="p-field">
+							<p:outputLabel for="rate">Rate/Hour</p:outputLabel>
+
+							<p:inputNumber id="rate" required="true"
+								value="#{dialogUserAccount.model.userRatePerHour}"
+								placeholder="Enter user's rate/hr" symbol=" UGX/HRS"
+								symbolPosition="s" padControl="false" thousandSeparator="," />
+						</div>
+						<div class="p-formgrid p-grid">
+							<div class="p-field p-col-6"></div>
+							<div class="p-field p-col">
+								<p:commandButton value="Save" icon="fa fa-save"
+									styleClass="ui-button ui-button-info"
+									actionListener="#{dialogUserAccount.save}" update="dialogUserAccount"
+									validateClient="true" ajax="true" />
+							</div>
+							<div class="p-field p-col">
+								<p:commandButton value="Cancel" icon="fa fa-times"
+									actionListener="#{dialogUserAccount.hide}"
+									styleClass="ui-button ui-button-danger" process="@this"
+									validateClient="false" />
+							</div>
+						</div>
+					</p:outputPanel>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

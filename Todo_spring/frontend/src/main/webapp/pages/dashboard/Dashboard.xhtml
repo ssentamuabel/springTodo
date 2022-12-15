@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/pages/californiatemplate/template.xhtml">
+
+	<ui:define name="title">Dashboard</ui:define>
+
+	<ui:define name="viewname">Dashboard</ui:define>
+
+	<ui:define name="head">
+		<h:outputScript name="js/chart.js" library="demo" />
+		<script type="text/javascript">
+            $(function () {
+                var chart = new Chart(document.getElementById("chart").getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['0', '1', '2', '3', '4', '5', '6'],
+                        datasets: [
+                            {
+                                label: 'First Dataset',
+                                data: [, 6, 3, 2, 7, 9,],
+                                fill: false,
+                                borderColor: '#FFC107'
+                            },
+                            {
+                                label: 'Second Dataset',
+                                data: [, 2, 1, 3, 6, 8,],
+                                fill: false,
+                                borderColor: '#03A9F4'
+                            }
+                        ]
+                    }
+                });
+            });
+        </script>
+	</ui:define>
+
+	<ui:define name="content">
+		<div class="dashboard">
+			<div class="p-grid">
+
+				<div class="p-col-12 p-md-12 p-lg-3">
+					<p:commandLink value="" immediate="true" process="@this"
+						action="#{usersView.getViewPath}" rendered="#{(componentRenderer.administrator)}">
+						<div class="overview-box monthly-users">
+							<div class="overview-title">
+								USERS <i class="pi pi-arrow-circle-up" />
+							</div>
+							<div class="overview-numbers">
+								<strong>#{dashboard.userTotalRecords}</strong>
+							</div>
+
+							<p:graphicImage name="images/icon-users.png"
+								library="california-layout" />
+						</div>
+					</p:commandLink>
+				</div>
+				
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>
